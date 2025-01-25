@@ -4,7 +4,7 @@ import "./CartSidebar.css";
 const CartSidebar = ({ cartItems, onClose }) => {
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
-  console.log("🛍️ Cart Items:", cartItems);
+  console.log("Cart Items:", cartItems);
 
   return (
     <div className="cart-sidebar open">

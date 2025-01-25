@@ -127,7 +127,7 @@ function App() {
       quantity: 1,
     };
 
-    console.log("🛒 Adding to Cart:", newProduct); 
+    console.log("Adding to Cart:", newProduct); 
 
     setCart((prevCart) => {
       const existingProduct = prevCart.find((item) => item.id === product.id);
@@ -141,7 +141,7 @@ function App() {
       }
     });
 
-    console.log("📦 Updated Cart:", cart); 
+    console.log(" Updated Cart:", cart); 
   };
 
   const handleProductClick = (product) => {
