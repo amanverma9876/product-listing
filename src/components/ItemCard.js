@@ -17,6 +17,7 @@ function ItemCard({ product, onProductClick }) {
         <h5 className="card-title">{product.Name}</h5>
         <p className="card-text">{product.Desc}</p>
         <p className="card-text fw-bold">${product.Price}</p>
+        <p className="Card-text">{product.Categories}</p>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 .cart-sidebar {
   position: fixed;
   top: 0;
-  right: -350px; /* Default hidden */
+  right: -350px; 
   width: 350px;
   height: 100vh;
   background: white;
@@ -11,7 +11,7 @@
 }
 
 .cart-sidebar.open {
-  right: 0; /* Opens the sidebar */
+  right: 0; 
 }
 
 .cart-header {

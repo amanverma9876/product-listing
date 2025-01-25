@@ -6,9 +6,9 @@ const ProductPopup = ({ product, onClose, onAddToCart }) => {
 
   if (!product) return null;
 
-  console.log("Popup Product Data:", product); // Debugging
+  console.log("Popup Product Data:", product); 
 
-  // Handle missing data safely
+
   const imageUrl = product.image?.startsWith("http")
     ? product.image
     : `https://interview.gdev.gosbfy.com/api/files/${product.collectionId}/${product.id}/${product.image || ""}`;
@@ -24,7 +24,7 @@ const ProductPopup = ({ product, onClose, onAddToCart }) => {
     setQuantity((prev) => (type === "increase" ? prev + 1 : Math.max(1, prev - 1)));
   };
   const handleAddToCart = () => {
-    console.log("Product to Add:", product); // Debugging
+    console.log("Product to Add:", product); 
   
     if (!product) {
       console.error("Error: No product data available");
@@ -47,7 +47,7 @@ const ProductPopup = ({ product, onClose, onAddToCart }) => {
       <div className="popup-container">
         <button className="close-btn" onClick={onClose}>×</button>
         
-        {/* Left: Product Image */}
+       
         <div className="popup-image-container">
           <img
             src={imageUrl}
@@ -56,7 +56,6 @@ const ProductPopup = ({ product, onClose, onAddToCart }) => {
           />
         </div>
 
-        {/* Right: Product Details */}
         <div className="popup-details">
           <h1 className="product-title">{productName}</h1>
           <p className="product-price">${productPrice}</p>
@@ -65,7 +64,7 @@ const ProductPopup = ({ product, onClose, onAddToCart }) => {
           </p>
           <p className="product-description">{productDescription}</p>
 
-          {/* Quantity & Add to Cart */}
+          
           <div className="product-actions">
             <div className="quantity-container">
               <button onClick={() => handleQuantityChange("decrease")}>-</button>
@@ -76,7 +75,7 @@ const ProductPopup = ({ product, onClose, onAddToCart }) => {
             <button className="wishlist-btn">♡</button>
           </div>
 
-          {/* SKU, Categories & Tags */}
+          
           <p className="sku"><strong>SKU:</strong> {productSku}</p>
           <p className="categories"><strong>Categories:</strong> {productCategories}</p>
           <p className="tags"><strong>Tags:</strong> {productTags}</p>

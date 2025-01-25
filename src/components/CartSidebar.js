@@ -2,7 +2,7 @@ import React from "react";
 import "./CartSidebar.css";
 
 const CartSidebar = ({ cartItems, onClose }) => {
-  
+
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
   console.log("🛍️ Cart Items:", cartItems);
 
@@ -13,7 +13,7 @@ const CartSidebar = ({ cartItems, onClose }) => {
         <button className="close-btn" onClick={onClose}>✖</button>
       </div>
 
-      {/* Check if cart has items */}
+
       {cartItems.length === 0 ? (
         <p className="empty-cart-message">Your cart is empty.</p>
       ) : (
@@ -36,7 +36,6 @@ const CartSidebar = ({ cartItems, onClose }) => {
         </div>
       )}
 
-      {/* Checkout Section */}
       <h3>Subtotal: ${subtotal}</h3>
       <div className="cart-footer">
         <button className="view-cart-btn">View Cart</button>

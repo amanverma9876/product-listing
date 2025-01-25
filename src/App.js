@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaThLarge, FaTh, FaGripHorizontal } from "react-icons/fa"; // Import icons
+import { FaThLarge, FaTh, FaGripHorizontal } from "react-icons/fa"; 
 import Header from "./components/Header";
 import ItemCard from "./components/ItemCard";
 import ProductPopup from "./components/ProductPopup";
@@ -22,10 +22,10 @@ const SortAndViewOptions = ({ totalProducts, currentView, setCurrentView, onSort
 
   return (
     <div className="d-flex justify-content-between align-items-center p-3 gap-3">
-      {/* Showing Count */}
+      
       <div className="d-flex align-items-center gap-3">
         <div className="showing-text">Showing 1-9 of {totalProducts}</div>
-        {/* Sort Dropdown */}
+       
         <div className="sort-dropdown">
           <label htmlFor="sort">Sort by:</label>
           <select
@@ -41,7 +41,7 @@ const SortAndViewOptions = ({ totalProducts, currentView, setCurrentView, onSort
         </div>
       </div>
   
-      {/* View Mode Icons */}
+     
       <div className="view-icons d-flex gap-2">
         <FaThLarge
           className={`view-icon ${currentView === "grid" ? "active" : ""}`}
@@ -64,11 +64,11 @@ function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [popupProduct, setPopupProduct] = useState(null);
-  const [showCart, setShowCart] = useState(false); // Controls cart sidebar visibility
+  const [showCart, setShowCart] = useState(false); 
   const [currentView, setCurrentView] = useState("grid");
   const [sortedProducts, setSortedProducts] = useState([]);
 
-  // Fetch products from API
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -94,7 +94,7 @@ function App() {
     fetchProducts();
   }, []);
 
-  // Function to handle sorting
+  
   const handleSortChange = (sortOption) => {
     const sorted = [...products];
     switch (sortOption) {
@@ -113,7 +113,7 @@ function App() {
     setSortedProducts(sorted);
   };
 
-  // Function to add products to the cart
+ 
   const addToCart = (product) => {
     if (!product || !product.id) return;
 
@@ -127,7 +127,7 @@ function App() {
       quantity: 1,
     };
 
-    console.log("🛒 Adding to Cart:", newProduct); // Debugging log
+    console.log("🛒 Adding to Cart:", newProduct); 
 
     setCart((prevCart) => {
       const existingProduct = prevCart.find((item) => item.id === product.id);
@@ -141,7 +141,7 @@ function App() {
       }
     });
 
-    console.log("📦 Updated Cart:", cart); // Debugging log
+    console.log("📦 Updated Cart:", cart); 
   };
 
   const handleProductClick = (product) => {
@@ -151,13 +151,13 @@ function App() {
 
   return (
     <div>
-      {/* Header with Cart Button */}
+    
       <Header
         cartCount={cart.reduce((total, item) => total + item.quantity, 0)}
         onCartClick={() => setShowCart(true)}
       />
 
-      {/* Sort and View Options */}
+     
       <SortAndViewOptions
         totalProducts={products.length}
         currentView={currentView}
@@ -165,7 +165,7 @@ function App() {
         onSortChange={handleSortChange}
       />
 
-      {/* Product List */}
+     
       <div
         className={`product-list d-flex flex-wrap gap-3 p-3 ${currentView}`}
       >
@@ -182,7 +182,7 @@ function App() {
         )}
       </div>
 
-      {/* Product Popup */}
+      
       {popupProduct && (
         <ProductPopup
           product={popupProduct}
@@ -191,7 +191,7 @@ function App() {
         />
       )}
 
-      {/* Cart Sidebar (Visibility controlled by showCart state) */}
+     
       {showCart && (
         <div className="cart-sidebar open">
           <CartSidebar cartItems={cart} onClose={() => setShowCart(false)} />
