@@ -6,39 +6,25 @@ const ProductPopup = ({ product, onClose, onAddToCart }) => {
 
   if (!product) return null;
 
-  console.log("Popup Product Data:", product); 
-
-
-  const imageUrl = product.image?.startsWith("http")
-    ? product.image
-    : `https://interview.gdev.gosbfy.com/api/files/${product.collectionId}/${product.id}/${product.image || ""}`;
-
-  const productName = product.name || product.Name || "Unknown Product";
-  const productDescription = product.description || product.Desc || "No description available.";
+  const imageUrl = product.image?.startsWith("http") ? product.image : "https://via.placeholder.com/300";
+  const productName = product.title || "Unknown Product"; 
+  const productDescription = product.description || "No description available.";
   const productPrice = product.price ? product.price.toFixed(2) : "0.00";
-  const productSku = product.sku || "N/A";
-  const productCategories = product.categories?.length ? product.categories.join(" | ") : "None";
-  const productTags = product.tags?.length ? product.tags.join(" | ") : "None";
+  const productCategory = product.category || "Uncategorized";
 
   const handleQuantityChange = (type) => {
     setQuantity((prev) => (type === "increase" ? prev + 1 : Math.max(1, prev - 1)));
   };
+
   const handleAddToCart = () => {
-    console.log("Product to Add:", product); 
-  
-    if (!product) {
-      console.error("Error: No product data available");
-      return;
-    }
-  
     onAddToCart({
       id: product.id,
-      name: product.name || "No Name",
+      name: product.title || "No Name",
       price: product.price || 0,
       image: product.image || "https://via.placeholder.com/300",
-      quantity: 1,
+      quantity: quantity,
     });
-  
+
     onClose();
   };
 
@@ -46,40 +32,29 @@ const ProductPopup = ({ product, onClose, onAddToCart }) => {
     <div className="popup-overlay">
       <div className="popup-container">
         <button className="close-btn" onClick={onClose}>×</button>
-        
-       
+
         <div className="popup-image-container">
-          <img
-            src={imageUrl}
-            alt={productName}
-            className="popup-image"
-          />
+          <img src={imageUrl} alt={productName} className="popup-image" />
         </div>
 
         <div className="popup-details">
           <h1 className="product-title">{productName}</h1>
           <p className="product-price">${productPrice}</p>
-          <p className="product-availability">
-            <strong>Available:</strong> <span className="in-stock">In-stock</span>
+          <p className="product-category">
+            <strong>Category:</strong> {productCategory}
           </p>
           <p className="product-description">{productDescription}</p>
 
-          
           <div className="product-actions">
             <div className="quantity-container">
               <button onClick={() => handleQuantityChange("decrease")}>-</button>
               <input type="number" value={quantity} readOnly />
               <button onClick={() => handleQuantityChange("increase")}>+</button>
             </div>
-            <button className="add-to-cart" onClick={handleAddToCart}>Add to cart</button>
-            <button className="wishlist-btn">♡</button>
+            <button className="add-to-cart" onClick={handleAddToCart}>
+              Add to cart
+            </button>
           </div>
-
-          
-          <p className="sku"><strong>SKU:</strong> {productSku}</p>
-          <p className="categories"><strong>Categories:</strong> {productCategories}</p>
-          <p className="tags"><strong>Tags:</strong> {productTags}</p>
-          <p className="share-items"><strong>Share this item:</strong></p>
         </div>
       </div>
     </div>

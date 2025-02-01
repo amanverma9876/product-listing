@@ -1,28 +1,49 @@
 import React from "react";
-import { FaUser, FaHeart, FaShoppingBag, FaSearch, FaBars } from "react-icons/fa";
 import "./Header.css";
+import { FaUser, FaShoppingBag, FaSearch } from "react-icons/fa";
 
-const Header = ({ cartCount, onCartClick }) => {
+const Header = () => {
   return (
-    <header className="header">
+    <header className="main-header">
+      <div className="free-shipping">FREE SHIPPING OVER ₹999</div>
 
-      <div className="search-container">
-        <input type="text" placeholder="Search Anything..." className="search-input" />
-        <FaSearch className="search-icon" />
-      </div>
+      <div className="header-container">
+        
+      <div className="search-box">
+            <select className="category-dropdown">
+              <option>All Categories</option>
+              <option>Bracelets</option>
+              <option>Earrings</option>
+              <option>Neckpieces</option>
+              <option>Rings</option>
+            </select>
+            <input type="text" placeholder="Search Products..." className="search-input" />
+            <button className="search-btn">
+              <FaSearch />
+            </button>
+          </div>
 
-      <h1 className="logo">Helendo</h1>
-      <div className="header-icons">
+        
+        <div className="logo">Alistos</div>
+
+        
+        <div className="header-icons">
         <FaUser className="icon" />
-        <FaHeart className="icon" />
-
-        <div className="icon-container cart-icon" onClick={onCartClick}>
-          <FaShoppingBag className="icon" />
-          {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+        <FaShoppingBag className="icon" />
+          
         </div>
-
-        <FaBars className="icon" />
       </div>
+
+      
+      <nav className="nav-menu">
+        <ul>
+          <li>HOME</li>
+          <li>BRACELETS</li>
+          <li>EARRINGS</li>
+          <li>NECKPIECES</li>
+          <li>RINGS</li>
+        </ul>
+      </nav>
     </header>
   );
 };
